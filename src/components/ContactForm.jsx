@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const options = [
   { id: 1, label: "I have question about my membership" },
@@ -8,9 +8,7 @@ const options = [
   { id: 4, label: "Other question" },
 ];
 
-export function ContactForm(props) {
-  const { contact, onChange, onSubmit } = props;
-
+export function ContactForm({ contact, onChange, onSubmit }) {
   const { name, email, message, select } = contact || {};
 
   function handleSubmit(event) {
@@ -139,15 +137,17 @@ export function ContactForm(props) {
   );
 }
 
-// ContactForm.propTypes = {
-//   contact: {
-//     name: PropTypes.string,
-//     email: PropTypes.string,
-//     option: PropTypes.string,
-//     select: PropTypes.number,
-//     message: PropTypes.string,
-//     terms: PropTypes.bool,
-//   }.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   onSubmit: PropTypes.func.isRequired,
-// };
+ContactForm.propTypes = {
+  props: PropTypes.shape({
+    contact: {
+      name: PropTypes.string,
+      email: PropTypes.string,
+      option: PropTypes.string,
+      select: PropTypes.number,
+      message: PropTypes.string,
+      terms: PropTypes.bool,
+    }.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  }),
+};
