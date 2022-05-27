@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export function UserPanel({ user }) {
   return (
@@ -9,3 +10,11 @@ export function UserPanel({ user }) {
     </div>
   );
 }
+
+UserPanel.defaultProps = {
+  props: PropTypes.shape({
+    user: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }),
+};
