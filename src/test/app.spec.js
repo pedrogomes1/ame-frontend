@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-expressions */
 import React from "react";
 import { expect } from "chai";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import "./setup.js";
 
 import { App } from "../components/app";
@@ -12,7 +13,7 @@ describe("App Component", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = mount(<App />);
   });
 
   it("should render ContactForm", () => {
@@ -20,42 +21,49 @@ describe("App Component", () => {
   });
 
   it("should hide <ContactForm/> after sendContact() was called", () => {
-    wrapper.instance().sendContact({});
-    wrapper.update();
+    wrapper.find('form [type="submit"]').simulate("submit");
     expect(wrapper.find(ContactForm).exists()).not.to.be.true;
   });
 
   it("should show <Message/> after sendContact() was called", () => {
     expect(wrapper.find(Message).exists()).to.be.false;
-    wrapper.instance().sendContact({});
-    wrapper.update();
+    wrapper.find('form [type="submit"]').simulate("submit");
     expect(wrapper.find(Message).exists()).to.be.true;
   });
 
-  it("should have empty currentUser data until logged in", () => {
-    let instance = wrapper.instance();
-    expect(instance.state.currentUser).not.to.exist;
-    instance.logIn();
-    expect(instance.state.currentUser).to.exist;
-  });
+  // it("should have empty currentUser data until logged in", () => {
+  //   let instance = wrapper.instance();
+  //   expect(instance.state.currentUser).not.to.exist;
+  //   instance.logIn();
+  //   expect(instance.state.currentUser).to.exist;
+  // });
 
   it("should populate contact with user details (name, email) after login", () => {
-    let instance = wrapper.instance();
+    const logginButton = wrapper.find("button");
+    const inputName = wrapper.find('[name="name"]');
+    const inputEmail = wrapper.find('[name="email"]');
 
-    expect(instance.state.currentUser).not.to.exist;
+    expect(inputName).to.have.value("");
+    expect(inputEmail).to.have.value("");
+    expect(logginButton).to.have.text("Log In");
 
-    instance.logIn();
-    expect(instance.state.currentUser.name).to.eq(instance.state.contact.name);
-    expect(instance.state.currentUser.email).to.eq(
-      instance.state.contact.email
-    );
+    logginButton.simulate("click");
+
+    const contact = {
+      name: "Test User",
+      email: "user@example.com",
+    };
+
+    expect(inputName).to.have.value(contact.name);
+    expect(inputEmail).to.have.value(contact.email);
   });
 
   it("should show <UserPanel> with currentUser info after login", () => {
     expect(wrapper.find(UserPanel).exists()).to.be.false;
 
-    wrapper.instance().logIn();
-    wrapper.update();
+    const logginButton = wrapper.find("button");
+    logginButton.simulate("click");
+
     expect(wrapper.find(UserPanel).exists()).to.be.true;
   });
 });
