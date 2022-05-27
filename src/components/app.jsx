@@ -16,6 +16,10 @@ export function App() {
   const [contact, setContact] = useState(DEFAULT_CONTACT_FORM);
   const [hasFormSent, setHasFormSent] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [successMessage, setSuccessMessage] = useState({
+    header: "",
+    text: "",
+  });
 
   function handleContactChange(contact) {
     setContact(contact);
@@ -24,6 +28,10 @@ export function App() {
   function handleSendContact(contact) {
     // For now just mark it as `sent`
     setHasFormSent(true);
+    setSuccessMessage({
+      header: "Thank You",
+      text: "We will reply to your message in next 24h. Have a nice day! ;-)",
+    });
   }
 
   function handleLogin() {
