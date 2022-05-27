@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export function Message({ header, text, children }) {
   return (
@@ -8,3 +9,11 @@ export function Message({ header, text, children }) {
     </div>
   );
 }
+
+Message.propTypes = {
+  props: PropTypes.shape({
+    header: PropTypes.string,
+    text: PropTypes.string,
+    children: PropTypes.node,
+  }),
+};
