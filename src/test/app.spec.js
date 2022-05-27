@@ -4,10 +4,10 @@ import { expect } from "chai";
 import { mount } from "enzyme";
 import "./setup.js";
 
-import { App } from "../components/app";
-import { ContactForm } from "../components/contact-form";
-import { Message } from "../components/message";
-import { UserPanel } from "../components/user-panel";
+import { App } from "../App";
+import { ContactForm } from "../components/ContactForm";
+import { Message } from "../components/Message";
+import { UserPanel } from "../components/UserPanel";
 
 describe("App Component", () => {
   let wrapper;
@@ -31,12 +31,33 @@ describe("App Component", () => {
     expect(wrapper.find(Message).exists()).to.be.true;
   });
 
-  // it("should have empty currentUser data until logged in", () => {
-  //   let instance = wrapper.instance();
-  //   expect(instance.state.currentUser).not.to.exist;
-  //   instance.logIn();
-  //   expect(instance.state.currentUser).to.exist;
-  // });
+  it("should have empty currentUser data until logged in", () => {
+    const DEFAULT_CONTACT_FORM = {
+      name: "",
+      email: "",
+      option: "A",
+      select: 1,
+      terms: false,
+      message: "",
+    };
+
+    mount(
+      <ContactForm
+        contact={DEFAULT_CONTACT_FORM}
+        onChange={() => {}}
+        onSubmit={() => {}}
+      />
+    );
+
+    const logginButton = wrapper.find("button");
+
+    const inputName = wrapper.find('[name="name"]');
+    expect(inputName).to.have.value("");
+
+    logginButton.simulate("click");
+
+    expect(inputName).not.to.have.value("");
+  });
 
   it("should populate contact with user details (name, email) after login", () => {
     const logginButton = wrapper.find("button");
