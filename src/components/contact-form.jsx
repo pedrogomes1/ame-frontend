@@ -11,7 +11,7 @@ const options = [
 export function ContactForm(props) {
   const { contact, onChange, onSubmit } = props;
 
-  const { name, email, option, select, message, terms } = contact;
+  const { name, email } = contact || {};
 
   function handleSubmit(event) {
     event.preventDefault();
