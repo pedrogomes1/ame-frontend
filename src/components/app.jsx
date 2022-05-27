@@ -35,33 +35,43 @@ export function App() {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="pull-right">
-            <button className="btn btn-default">
-              <i className="glyphicon glyphicon-user"></i> Log In
-            </button>
+      {hasFormSent ? (
+        <Message />
+      ) : (
+        <>
+          <div className="row">
+            <div className="col-md-12">
+              {currentUser ? (
+                <UserPanel user={currentUser} />
+              ) : (
+                <div className="pull-right">
+                  <button className="btn btn-default" onClick={handleLogin}>
+                    <i className="glyphicon glyphicon-user"></i>Log In
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-4">
-          <h2>Contact us</h2>
-          <p>Please fill in form on the right to get fast reply</p>
-          <img
-            style={{ width: "100%" }}
-            alt="User contact image"
-            src="http://via.placeholder.com/300x200"
-          />
-        </div>
-        <div className="col-md-8">
-          <ContactForm
-            data={contact}
-            onChange={handleContactChange}
-            onSubmit={handleSendContact}
-          />
-        </div>
-      </div>
+          <div className="row">
+            <div className="col-md-4">
+              <h2>Contact us</h2>
+              <p>Please fill in form on the right to get fast reply</p>
+              <img
+                style={{ width: "100%" }}
+                alt="User contact image"
+                src="http://via.placeholder.com/300x200"
+              />
+            </div>
+            <div className="col-md-8">
+              <ContactForm
+                contact={contact}
+                onChange={handleContactChange}
+                onSubmit={handleSendContact}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
