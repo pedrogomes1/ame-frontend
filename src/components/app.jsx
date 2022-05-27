@@ -36,7 +36,7 @@ export function App() {
   return (
     <div className="container">
       {hasFormSent ? (
-        <Message />
+        <Message header={successMessage.header} text={successMessage.text} />
       ) : (
         <>
           <div className="row">
