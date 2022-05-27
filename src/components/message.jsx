@@ -1,12 +1,10 @@
 import React from "react";
 
-export function Message() {
+export function Message({ header, text, children }) {
   return (
     <div className="text-center">
-      <h3 className="message-header">Thank You</h3>
-      <div className="message-body">
-        We will reply to your message in next 24h. Have a nice day! {`;-)`}
-      </div>
+      {!!header && <h3 className="message-header">{header}</h3>}
+      <div className="message-body">{text || children}</div>
     </div>
   );
 }
