@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { ContactForm } from "./contact-form";
-import { Message } from "./message";
-import { UserPanel } from "./user-panel";
+import { ContactForm } from "./components/ContactForm";
+import { Message } from "./components/Message";
+import { UserPanel } from "./components/UserPanel";
 
 const DEFAULT_CONTACT_FORM = {
   name: "",
   email: "",
   option: "A",
   select: 1,
-  type: "",
+  terms: false,
   message: "",
 };
 
@@ -25,8 +25,7 @@ export function App() {
     setContact(contact);
   }
 
-  function handleSendContact(contact) {
-    // For now just mark it as `sent`
+  function handleSendContact() {
     setHasFormSent(true);
     setSuccessMessage({
       header: "Thank You",
@@ -39,6 +38,11 @@ export function App() {
       name: "Test User",
       email: "user@example.com",
     });
+    setContact((prevContact) => ({
+      ...prevContact,
+      name: "Test User",
+      email: "user@example.com",
+    }));
   }
 
   return (
@@ -66,7 +70,7 @@ export function App() {
               <p>Please fill in form on the right to get fast reply</p>
               <img
                 style={{ width: "100%" }}
-                alt="User contact image"
+                alt="User profile contact"
                 src="http://via.placeholder.com/300x200"
               />
             </div>
