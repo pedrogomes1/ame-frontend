@@ -17,11 +17,11 @@ export function App() {
   const [hasFormSent, setHasFormSent] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
-  function contactChanged(contact) {
+  function handleContactChange(contact) {
     setContact(contact);
   }
 
-  function sendContact(contact) {
+  function handleSendContact(contact) {
     // For now just mark it as `sent`
     setHasFormSent(true);
   }
@@ -57,8 +57,8 @@ export function App() {
         <div className="col-md-8">
           <ContactForm
             data={contact}
-            onChange={contactChanged}
-            onSubmit={sendContact}
+            onChange={handleContactChange}
+            onSubmit={handleSendContact}
           />
         </div>
       </div>
