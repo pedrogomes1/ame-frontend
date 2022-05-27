@@ -11,7 +11,7 @@ const options = [
 export function ContactForm(props) {
   const { contact, onChange, onSubmit } = props;
 
-  const { name, email } = contact || {};
+  const { name, email, message, select } = contact || {};
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -24,6 +24,10 @@ export function ContactForm(props) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     onChange({ ...contact, [fieldName]: value });
+  }
+
+  function isSelectedRadio(key, option) {
+    return contact[key] === option;
   }
 
   return (
@@ -64,6 +68,7 @@ export function ContactForm(props) {
             name="option"
             value="A"
             onChange={handleChangeField}
+            checked={isSelectedRadio("option", "A")}
           />{" "}
           Option A
         </label>
@@ -73,6 +78,7 @@ export function ContactForm(props) {
             name="option"
             value="B"
             onChange={handleChangeField}
+            checked={isSelectedRadio("option", "B")}
           />{" "}
           Option B
         </label>
@@ -82,6 +88,7 @@ export function ContactForm(props) {
             name="option"
             value="C"
             onChange={handleChangeField}
+            checked={isSelectedRadio("option", "C")}
           />{" "}
           Option C
         </label>
@@ -95,6 +102,7 @@ export function ContactForm(props) {
           className="form-control"
           name="select"
           onChange={handleChangeField}
+          value={select}
         >
           {options.map((option) => (
             <option key={option.id} value={option.id}>
@@ -115,6 +123,7 @@ export function ContactForm(props) {
           placeholder="Please type your question here"
           className="form-control"
           onChange={handleChangeField}
+          value={message}
         />
       </div>
 
