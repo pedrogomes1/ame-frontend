@@ -38,7 +38,7 @@ export function App() {
       <div className="row">
         <div className="col-md-12">
           <div className="pull-right">
-            <button class="btn btn-default">
+            <button className="btn btn-default">
               <i className="glyphicon glyphicon-user"></i> Log In
             </button>
           </div>

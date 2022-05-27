@@ -32,18 +32,18 @@ export function ContactForm(props) {
     <form>
       <h3>Contact Form</h3>
 
-      <div class="form-group">
+      <div className="form-group">
         <label className="form-label">Your Name:</label>
         <input name="name" className="form-control" />
       </div>
 
-      <div class="form-group">
+      <div className="form-group">
         <label className="form-label">Your Best Email:</label>
         <input name="email" className="form-control" />
       </div>
 
       <label className="form-label">Select your membership option:</label>
-      <div class="form-group row">
+      <div className="form-group row">
         <label className="form-label col-xs-4">
           <input type="radio" name="option" value="A" /> Option A
         </label>
@@ -57,14 +57,14 @@ export function ContactForm(props) {
 
       <hr />
 
-      <div class="form-group">
+      <div className="form-group">
         <label className="form-label">What can we help you with:</label>
         <select className="form-control" name="select">
           <option value="1">I have question about my membership</option>
         </select>
       </div>
 
-      <div class="form-group">
+      <div className="form-group">
         <label className="form-label">Message:</label>
         <textarea
           name="message"
@@ -74,7 +74,7 @@ export function ContactForm(props) {
         />
       </div>
 
-      <div class="form-group">
+      <div className="form-group">
         <label className="form-label">
           {" "}
           <input type="checkbox" name="terms" /> I agree to terms and conditions{" "}
